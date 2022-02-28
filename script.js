@@ -1,59 +1,59 @@
-const model = document.querySelector('.model');
-const burger = document.querySelector('.hamburger');
-const sideBar = document.querySelector('.sideBar');
-const work = document.querySelector('.work_sec');
-const closeBtn = document.getElementById('close');
+const model = document.querySelector(".model");
+const burger = document.querySelector(".hamburger");
+const sideBar = document.querySelector(".sideBar");
+const work = document.querySelector(".work_sec");
+const closeBtn = document.getElementById("close");
 
-burger.addEventListener('click', showSideBar);
+burger.addEventListener("click", showSideBar);
 
-model.addEventListener('click', hideSideBar);
+model.addEventListener("click", hideSideBar);
 
-work.addEventListener('click', e => togglePhotoFrame(e, 'show'));
+work.addEventListener("click", (e) => togglePhotoFrame(e, "show"));
 
-closeBtn.addEventListener('click', e => togglePhotoFrame(e, 'hide'));
+closeBtn.addEventListener("click", (e) => togglePhotoFrame(e, "hide"));
 
 function showSideBar() {
-  model.classList.add('fadeIn');
-  sideBar.classList.add('slideIn');
+  model.classList.add("fadeIn");
+  sideBar.classList.add("slideIn");
 }
 function hideSideBar() {
-  sideBar.classList.remove('slideIn');
-  model.classList.remove('fadeIn');
+  sideBar.classList.remove("slideIn");
+  model.classList.remove("fadeIn");
 }
 
 function togglePhotoFrame(e, action) {
-  let id = e.target.getAttribute('id');
-  const frame = document.querySelector('.photo_frame');
-  const imgCon = document.querySelector('.main_img_con');
-  if (action === 'hide') {
-    model.classList.remove('fadeIn');
-    frame.classList.remove('showFrame');
-  } else if (id && action === 'show') {
-    model.classList.add('fadeIn');
-    frame.classList.add('showFrame');
+  let id = e.target.getAttribute("id");
+  const frame = document.querySelector(".photo_frame");
+  const imgCon = document.querySelector(".main_img_con");
+  if (action === "hide") {
+    model.classList.remove("fadeIn");
+    frame.classList.remove("showFrame");
+  } else if (id && action === "show") {
+    model.classList.add("fadeIn");
+    frame.classList.add("showFrame");
     imgCon.style.backgroundImage = `url("./imgs/gallery/${id}.jpg"), url("./imgs/spinner.gif")`;
-    imgCon.style.backgroundSize = 'cover, 50px 50px';
+    imgCon.style.backgroundSize = "contain, 50px 50px";
 
-    const next = document.getElementById('next');
-    const prev = document.getElementById('prev');
-    next.addEventListener('click', () => nextPhoto('next'));
-    prev.addEventListener('click', () => nextPhoto('prev'));
+    const next = document.getElementById("next");
+    const prev = document.getElementById("prev");
+    next.addEventListener("click", () => nextPhoto("next"));
+    prev.addEventListener("click", () => nextPhoto("prev"));
     hideNavBtn();
   }
   function nextPhoto(action) {
-    if (action === 'next' && id < 15)
+    if (action === "next" && id < 25)
       imgCon.style.backgroundImage = `url("./imgs/gallery/${++id}.jpg"), url("./imgs/spinner.gif")`;
-    else if (action === 'prev' && id > 1)
+    else if (action === "prev" && id > 1)
       imgCon.style.backgroundImage = `url("./imgs/gallery/${--id}.jpg"), url("./imgs/spinner.gif")`;
 
     hideNavBtn();
   }
   function hideNavBtn() {
-    if (id == 1) prev.style.display = 'none';
-    else if (id == 15) next.style.display = 'none';
+    if (id == 1) prev.style.display = "none";
+    else if (id == 25) next.style.display = "none";
     else {
-      next.style.display = 'inline-block';
-      prev.style.display = 'inline-block';
+      next.style.display = "inline-block";
+      prev.style.display = "inline-block";
     }
   }
 }

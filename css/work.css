@@ -1,5 +1,5 @@
 main {
-  background: #333 url('../imgs/mosaic.png');
+  background: #333 url("../imgs/mosaic.png");
   padding: 2rem;
 }
 main h1 {
@@ -10,26 +10,47 @@ main h1 {
   margin-bottom: 2rem;
 }
 .work_sec {
-  display: flex;
-  flex-flow: row wrap;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 200px;
   justify-content: center;
   margin: 0 auto;
 }
 
+@media (min-width: 500px) {
+  .work_sec {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .work_sec {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
 .work_sec > div {
+  border-radius: 3px;
+  box-shadow: 2px 4px 6px 2px rgba(0, 0, 0, 0.5);
   margin: 5px 8px;
   cursor: pointer;
+  max-width: 300px;
+  max-height: 200px;
 }
+
 .work_sec > div:hover {
   filter: opacity(0.8);
 }
+
 .work_sec img {
-  min-width: 200px;
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 3px;
-  box-shadow: 2px 4px 6px 2px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
+
 .photo_frame {
   position: fixed;
   top: 0;
@@ -75,7 +96,7 @@ main h1 {
   top: 50%;
   left: 49%;
   transform: translate(-50%, -50%);
-  background: #555 url('../imgs/spinner.gif');
+  background: #555 url("../imgs/spinner.gif");
   background-repeat: no-repeat;
   background-position: center;
   cursor: unset;
